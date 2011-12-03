@@ -25,18 +25,18 @@ class ActivitiesController < ApplicationController
 
   def new
     @activity = Activity.new
-    @causes = Cause.all
+    @projects = Project.all
   end
 
   def create
     @activity = Activity.new(params[:activity])
     @activity.submitter = current_actor
     if @activity.save
-      flash[:notice] = "Thanks for creating a new activity in support of your cause!"
+      flash[:notice] = "Thanks for creating a new activity in support of your project!"
       redirect_to activities_path
     else
       flash[:error] = @activity.errors
-      redirect_to new_activity_path :cause_id => @activity.cause_id
+      redirect_to new_activity_path :project_id => @activity.project_id
     end
   end
 

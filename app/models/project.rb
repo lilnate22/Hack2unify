@@ -1,4 +1,4 @@
-class Cause < ActiveRecord::Base
+class Project < ActiveRecord::Base
   acts_as_voteable
   #make_flaggable
   has_many :activities

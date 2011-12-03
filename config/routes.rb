@@ -11,7 +11,7 @@ Af::Application.routes.draw do
 
 
   match "/signout" => "sessions#destroy", :as => :signout
-  resources :causes do
+  resources :projects do
     member do
       post :vote_up, :vote_down#, :flag
     end
@@ -31,7 +31,7 @@ Af::Application.routes.draw do
 
   get "/phillystartup" => "incentives#index"
 
-  #resources :activities, :only => [:show] #or should this work but specify :controller => "causes/activities" ?
+  #resources :activities, :only => [:show] #or should this work but specify :controller => "projects/activities" ?
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

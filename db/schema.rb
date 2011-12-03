@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(:version => 20111106174540) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "cause_id"
+    t.integer  "project_id"
     t.integer  "submitter_id"
   end
 
@@ -33,14 +33,6 @@ ActiveRecord::Schema.define(:version => 20111106174540) do
     t.string   "ip_address"
   end
 
-  create_table "causes", :force => true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "submitter_id"
-  end
-
   create_table "incentives", :force => true do |t|
     t.text     "name"
     t.text     "description"
@@ -49,6 +41,14 @@ ActiveRecord::Schema.define(:version => 20111106174540) do
     t.integer  "supporter_id"
     t.integer  "sponsor_id"
     t.boolean  "performed"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "submitter_id"
+  end
+
+  create_table "projects", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "submitter_id"

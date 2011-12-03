@@ -20,8 +20,8 @@ class IncentivesController < ApplicationController
   # end
 
   def index
-    if params[:cause_id]
-      @incentives = Incentive.joins(:activity).where('activities.cause_id' => params[:cause_id])
+    if params[:project_id]
+      @incentives = Incentive.joins(:activity).where('activities.project_id' => params[:project_id])
     else
       @incentives = Incentive.all
     end
