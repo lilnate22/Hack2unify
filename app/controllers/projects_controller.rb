@@ -1,4 +1,4 @@
-class CausesController < ApplicationController
+class ProjectsController < ApplicationController
   def vote_up
     current_actor.vote_up Project.find(params[:id])
     redirect_to :back
