@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Diff</title>
+  <%= render :partial => 'fonts' %>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="header">
+  <div class="logo">
+    <a href="/incentives">Diff</a>
+    <span class="tagline">Make a difference.  Quickly.</span>
+  </div>
+  <div class="nav">
+    <% if logged_in_actor %>
+      Welcome, <%= logged_in_actor.name %>!
+      <%= link_to "Sign Out", signout_path %>
+    <% else %>
+      Welcome, <%= current_actor.name %>!
+      <%= link_to "Sign in with Twitter", "/auth/twitter", :class => :button %>
+    <% end %>
+  </div>
+  <div class="menu">
+    <%= link_to "Causes", causes_path %>
+    <%= link_to "Activities", activities_path %>
+    <%= link_to "My Account", actor_path(current_actor) %>
+  </div>
+</div>
+
+<% if flash[:warning] or flash[:notice] %>
+  <div class="notice">
+    <%= flash[:warning] || flash[:notice] %>
+  </div>
+<% end %>
+
+<div class="content">
+  <%= yield %>
+<div>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+.new
+  = link_to "Create a new Cause", new_cause_path
+
+-@causes.each do |cause|
+  .cause
+    = render :partial => "shared/vote", :locals => {:target => cause}
+    = link_to cause.name, incentives_path(:cause_id => cause.id)
+    .popularity Popularity: #{cause.popularity}
+    .clear

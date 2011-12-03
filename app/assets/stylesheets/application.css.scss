@@ -1,0 +1,245 @@
+@import "formtastic";
+
+
+@import "compass/css3";
+
+$panel-color-0: #515444;
+$panel-color-1: #4a7b7f;
+$panel-color-2: #79a68c;
+$panel-color-3: #f0ca99;
+$panel-color-4: #f0822e;
+$bg-color: $panel-color-0;
+
+@mixin basic-text-shadow($size) {
+    @include text-shadow(#000 0px 1px $size);
+}
+@mixin inset-text-shadow {
+    @include text-shadow(rgba(255, 255, 255, 0) 0px -1px 0.2px);
+}
+@mixin box-shadow-big {
+    @include box-shadow(rgba(0, 0, 0, 0.5) 0px 1px 8px);
+}
+    
+
+body {
+    background: $panel-color-0;
+    font-family: 'PT Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body.splash {
+    background: #111;
+}
+
+.content {
+    padding: 20px;
+}
+
+.header .logo {
+    font-family: 'Sansita One';
+    font-size: 44px;
+    color: $panel-color-2;
+    .light { color: lighten($panel-color-2, 20%); }
+    float: left;
+    margin-left: 20px;
+    a { color: inherit; text-decoration:none; }
+    padding-top: 6px;
+}
+.header .tagline {
+    font-family: 'Poly';
+    color: $panel-color-2;
+    font-size: 16px;
+    line-height: 1px;
+}
+
+.splash .logo {
+    font-family: 'Sansita One';
+    font-size: 80px;
+    color: $panel-color-2;
+    .light { color: lighten($panel-color-2, 20%); }
+    margin-top: 100px;
+    text-align: center;
+}
+.splash .tagline {
+    font-family: 'Poly';
+    text-align: center;
+    color: $panel-color-3;
+    font-size: 36px;
+    margin-top: 20px;
+}
+
+.logo {
+    img {
+        display: block;
+        margin: 100px auto;
+        width: 400px;
+    }
+}
+
+table {
+    $radius: 16px;
+    width: 100%;
+    border-collapse: collapse;
+    tbody {
+        @include box-shadow-big;
+        @include border-radius($radius);
+    }
+    th {
+        color: #fff;
+        @include basic-text-shadow(8px);
+        font-size: 22px;
+        padding-bottom: 10px;
+    }
+    tr:first-child td:first-child { @include border-top-left-radius($radius); }
+    tr:first-child td:last-child { @include border-top-right-radius($radius); }
+    tr:last-child td:first-child { @include border-bottom-left-radius($radius); }
+    tr:last-child td:last-child { @include border-bottom-right-radius($radius); }
+    tr:last-child td { border:none }
+    td {
+        vertical-align:top;
+        font-size: 15px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+        padding: 1em;
+        &.links {
+            background: $panel-color-3;
+            white-space: nowrap;
+        }
+        a {
+            color: inherit;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+    }
+    td.activity, td.incentive {
+        width: 360px;
+    }
+}
+
+.cause  {
+    color: #fff;
+    @include basic-text-shadow(1px);
+    background: $panel-color-1;
+}
+
+
+.activity {
+    color: #fff;
+    @include basic-text-shadow(1px);
+    background: $panel-color-1;
+}
+.incentive {
+    color: #fff;
+    @include basic-text-shadow(1px);
+    background: $panel-color-2;
+}
+.links {
+    background: $panel-color-3;
+}
+
+a.button, input.button {
+    background: $panel-color-4;
+    @include border-radius(4px);
+    @include box-shadow(rgba(0, 0, 0, 0.2) 0px 1px 2px);
+    padding: 4px;
+    font-size: 15px;
+    @include inset-text-shadow;
+    color: darken($panel-color-4, 40%) !important;
+    border: 1px solid darken($panel-color-4, 40%);
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+    font-weight: bold;
+}
+a.button:hover, input.button:hover {
+    background: lighten($panel-color-4, 10%);
+}
+
+.text input, .text textarea {
+    width: 300px;
+    border: none;
+}
+
+.notice {
+    border: 1px solid red;
+    padding: 1em;
+}
+
+.header {
+    background: #111;
+    height: 60px;
+}
+
+.menu, .nav {
+    a { color: #fff; text-decoration: none;}
+    float: right;
+    margin-right: 20px;
+}
+
+.menu {
+    padding: 10px;
+    a {
+        float: left;
+        display: block;
+        margin-left: 20px;
+    }
+}
+
+.nav {
+    background: $panel-color-1;
+    @include border-bottom-radius(8px);
+    padding: 10px;
+}
+
+.panel {
+    $radius: 16px;
+    .activity, .incentive, .links {
+        padding: 20px;
+        @include box-shadow-big;
+        h1 { font-size: 26px; }
+        h2 { font-size: 22px; font-weight: normal; }
+        h3 { font-size: 18px; font-weight: normal; }
+        h1, h2, h3 { margin: 10px 0 }
+    }
+    .activity {
+        @include border-top-radius($radius);
+    }
+    .incentive {
+    }
+    .links {
+        @include border-bottom-radius($radius);
+    }
+}
+
+.confirm {
+    width: 180px;
+    float: left;
+}
+.fine_print {
+    width: 300px;
+    float: right;
+    font-size: 14px;
+    line-height: 14px;
+    background: rgba(0, 0, 0, 0.1);
+    @include border-radius(4px);
+    padding: 8px;
+    a { color: inherit; }
+    &.narrow { width: 100px; }
+}
+.blurb {
+    font-size: 13px;
+    line-height: 16px;
+    padding: 4px;
+    @include border-radius(4px);
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.clear {
+    clear: both;
+}
+
+.vote {
+    float: left;
+    margin: 0 8px 8px 0;
+}
