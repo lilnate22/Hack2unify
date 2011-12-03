@@ -1,5 +1,7 @@
 Af::Application.routes.draw do
 
+  resources :project_memberships
+
   get "home/index"
 
   #match "/auth/:provider/callback" => "sessions#create"

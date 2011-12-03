@@ -5,6 +5,7 @@ class Actor < ActiveRecord::Base
   has_karma(:incentives, :as => :submitter)
   has_many :incentives, :foreign_key => :claimant_id
   has_many :provided_incentives, :class_name => "Incentive", :foreign_key => :supporter_id
+  has_many :projects, :through => :project_memberships
 
   def self.create_with_omniauth(auth, ip_address)
     if Actor.where(:ip_address => ip_address, :uid => nil).exists?
