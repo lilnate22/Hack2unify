@@ -1,9 +1,0 @@
-.new
-  = link_to "Create a new Project", new_project_path
-
--@projects.each do |project|
-  .project
-    = render :partial => "shared/vote", :locals => {:target => project}
-    = link_to project.name, incentives_path(:project_id => project.id)
-    .popularity Popularity: #{project.popularity}
-    .clear
