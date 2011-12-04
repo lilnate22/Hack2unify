@@ -17,6 +17,12 @@
             needs
             =  incentive.activity.name
           .clear
+          -if incentive.activity.project.actors.map(&:id).include? current_actor.id
+            = link_to "Leave this project", leave_project_path(incentive.activity.project), :method => :post, :class => "button"
+          -else
+            = link_to "Join this project", join_project_path(incentive.activity.project), :method => :post, :class => "button"
+
+
         %td.incentive
           = render :partial => "shared/vote", :locals => {:target => incentive}
           = link_to incentive.supporter.name, incentive.supporter

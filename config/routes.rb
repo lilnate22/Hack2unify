@@ -16,6 +16,7 @@ Af::Application.routes.draw do
   resources :projects do
     member do
       post :vote_up, :vote_down#, :flag
+      post :join, :leave
     end
   end
   resources :activities do
