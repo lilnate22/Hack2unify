@@ -83,7 +83,9 @@ div#welcome ol li:nth-child(3):before{content:"3";}
 div#welcome ol li:before{display:inline-block;text-align:center;line-height:2.8em;content:"";width:2.8em;height:2.8em;background:#ff5335;color:#fff;-moz-border-radius:1.4em;-webkit-border-radius:1.4em;margin-right:1em;}
 #projects{width:100%;zoom:1;}#projects:before{content:'';display:block;}
 #projects:after{content:'';display:table;clear:both;}
-#projects div.showing{margin-top:1.5em;text-align:center;font-size:1.2em;margin-bottom:1em;}
+#projects div.showing{margin-top:1.5em;text-align:center;font-size:1.2em;margin-bottom:1em;position:relative;}#projects div.showing ul{background:#fff;border:0.1em solid #E6E6E6;font-size:0.9em;width:10em;text-align:left;padding:0.5em;position:absolute;z-index:10000;display:none;}#projects div.showing ul.category{left:20em;}
+#projects div.showing ul.skill{left:30em;}
+#projects div.showing ul li{list-style-type:none;color:#06C;}#projects div.showing ul li:hover{text-decoration:underline;cursor:pointer;}
 #projects article:nth-child(3n+1){float:left;}
 #projects article:nth-child(3n+3){margin-right:2%;}
 #projects article{border:0.1em solid #E6E6E6;-webkit-border-radius:0.3em;-moz-border-radius:0.3em;border-radius:0.3em;float:right;width:30%;padding:1%;margin-bottom:1em;background:#fff;padding-bottom:1em;}#projects article h1,#projects article h2{font-family:"Open Sans";}
