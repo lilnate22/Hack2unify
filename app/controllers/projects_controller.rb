@@ -11,6 +11,7 @@ class ProjectsController < ApplicationController
 
   def join
     current_actor.join_project Project.find(params[:id])
+    flash[:notice] = "Thanks for Joining!"
     redirect_to :back
   end
 
