@@ -1,15 +1,15 @@
 %h1
-  = @project.name
-%h2
-  = @project.description
-
-  -if @project.actors.include? current_actor
-    = link_to "Leave this project", leave_project_path(@project), :method => :post, :class => "button"
-  -else
-    = link_to "Join this project", join_project_path(@project), :method => :post, :class => "button"
+	= @project.name
+%h2 = @project.description
+	  %img{:src => "http://lorempixel.com/400/250/"}
+	    %dl
+	      %dt Needs
+	      %dd Developers
+	      %dd Engineers
+	    %a.join{:href => "#"} Join this Project
 
 -@project.activities.each do |activity|
-  %h3
-    =activity.name
-    %br
-    =activity.description
+%h3
+ =activity.name
+ %br
+ =activity.description
