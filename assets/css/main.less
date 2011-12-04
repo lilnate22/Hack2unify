@@ -1,0 +1,868 @@
+/*
+	* Gridless version 2.0
+
+	* Credit is left inline and big thanks to Nicolas Gallagher and Jonathan Neal
+
+	* Across this document we use safe CSS hacks: http://mathiasbynens.be/notes/safe-css-hacks
+	* Selectors beggining with an underscore (_selector: property) target only IE6
+	* Selectors beggining with an asterisk (*selector: property) target only IE6 and IE7
+*/
+
+/* HTML5 display definitions
+---------------------------------------- */
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, dialog {
+	display: block;
+}
+
+/* Corrects inline-block not defined in IE6/7/8 and FF3 */
+audio, canvas, video {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+}
+
+audio:not([controls]) {
+	display: none;
+}
+
+/* Ensures content is hidden from all presentations, including screenreaders */
+[hidden] {
+	display: none;
+	visibility: hidden;
+}
+
+/* Base structure
+---------------------------------------- */
+
+/*
+	* The body will work like a 'div#wrapper' (for this to work, the 'body' needs to have a set width)
+
+	* To add a background to the PAGE, set it in the 'html' element
+	* To add a background to the WRAPPER, set it in the 'body' element
+*/
+html {
+	height: 100%;
+	font-size: 100%;
+	overflow-y: scroll; /* Force a scrollbar in non-IE */
+	-webkit-text-size-adjust: 100%; /* Prevent iOS text size adjust on orientation change without disabling user zoom */
+	-ms-text-size-adjust: 100%;
+}
+
+body {
+	margin: 0 auto;
+	min-height: 100%;
+}
+
+/* Fonts settings based on the 100E2R standard: http://www.informationarchitects.jp/en/100e2r/ */
+body, button, input, select, textarea {
+	font: 1em/1.625 Georgia, serif;
+	color: #222; /* Full black on white is too much contrast, #222 is a better default */
+}
+
+/* Add and/or remove tags as your baseline grid needs */
+p, blockquote, q, pre, address, hr, code, samp, dl, ol, ul, form, table, fieldset, menu, h4, h5, h6, img, figure, figcaption, button, hr {
+	margin: 0 0 1.625em;
+}
+
+/* Headings/small
+---------------------------------------- */
+
+/*
+	* Font sizes are based on the golden ratio of 16
+	* See this for the modular scale: ow.ly/5jGl6
+	* Line-heights and margins are adjusted to keep a 26px (1.625em) vertical rhythm across elements 
+*/
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: Palatino, 'Palatino Linotype', 'Book Antiqua', FreeSerif, Georgia, serif;
+	font-size: 1em;
+	font-weight: bold;
+}
+
+h1 {
+	font-size: 4.25em; /* 68px */
+	line-height: 1.1471em;
+	margin: 0 0 0.3824em;
+}
+
+h2 {
+	font-size: 2.625em; /* 42px */
+	line-height: 1.2381em;
+	margin: 0 0 0.619em;
+}
+
+h3 {
+	font-size: 1.625em; /* 26px */
+	line-height: 1em;
+	margin: 0 0 1em;
+}
+
+small {
+	font-size: 0.625em; /* 10px */
+	margin: 0 0 2.6em;
+}
+
+/* Preformatted text and code
+---------------------------------------- */
+
+/* Allows line wrapping of 'pre' */
+pre {
+	white-space: pre;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+
+pre, code, kbd, samp {
+	font: 1em/1.625em Menlo, Consolas, 'DejaVu Sans Mono', Monaco, 'Courier New', Courier, monospace;
+}
+
+/* Tables
+---------------------------------------- */
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+th {
+	text-align: left;
+}
+
+tr, th, td {
+	padding-right: 1.625em;
+}
+
+/* Forms
+---------------------------------------- */
+
+form {
+	margin: 0;
+}
+
+fieldset {
+	border: 0;
+	padding: 0;
+}
+
+textarea {
+	overflow: auto;
+	vertical-align: top;
+}
+
+legend {
+	border: 0;
+	*margin-left: -7px;
+}
+
+button, input, select, textarea {
+	vertical-align: baseline;
+	*vertical-align: middle;
+}
+
+button, input {
+	line-height: normal;
+	*overflow: visible;
+}
+
+button, input[type="button"], input[type="reset"], input[type="submit"] {
+	cursor: pointer;
+	-webkit-appearance: button;
+}
+
+input[type="checkbox"], input[type="radio"] {
+	box-sizing: border-box;
+}
+
+input[type="search"] {
+	-webkit-appearance: textfield;
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
+}
+
+input[type="search"]::-webkit-search-decoration {
+	-webkit-appearance: none;
+}
+
+button::-moz-focus-inner, input::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+
+/* Reintroduce inner spacing in 'table' to avoid overlap and whitespace issues in IE6/7 */
+table button, table input {
+	*overflow: auto;
+}
+
+/* Quotes
+---------------------------------------- */
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+	content: '';
+	content: none;
+}
+
+blockquote, q, cite {
+	font-style: italic;
+}
+
+blockquote {
+	padding-left: 1.625em;
+	border-left: 1px solid #ddd;
+}
+
+blockquote > p {
+	padding: 0;
+}
+
+/* Lists
+---------------------------------------- */
+
+ul, ol {
+	list-style-position: inside;
+	padding: 0;
+}
+
+li ul, li ol {
+	margin: 0 1.625em;
+}
+
+dl dd {
+	margin-left: 1.625em;
+}
+
+/* Links
+---------------------------------------- */
+
+a, a:visited {
+	text-decoration: none;
+	color: #06c;
+}
+
+a:hover {
+	border-bottom: 1px solid;
+}
+
+a:focus {
+	outline: thin dotted;
+}
+
+/* Better CSS outline suppression: people.opera.com/patrickl/experiments/keyboard/test */
+a:hover, a:active {
+	outline: none;
+}
+
+/* Figures
+---------------------------------------- */
+
+figure {
+	margin: 0;
+}
+
+/* Embedded content
+---------------------------------------- */
+
+img, object, video {
+	max-width: 100%; /* Automatically scales images larger than the container. Consider this first: http://unstoppablerobotninja.com/entry/fluid-images/ */
+	/* _width: 100%; /* IE6 doesn't support max-width, so we just use width. If the image is larger than the container, just uncomment this. If it is smaller than the container, uncomment and change the 100% value to an absolute one */
+}
+
+img {
+	border: 0;
+	-ms-interpolation-mode: bicubic; /* Improve IE's resizing of images: css-tricks.com/ie-fix-bicubic-scaling-for-images */
+}
+
+/* Corrects overflow displayed oddly in IE9 */
+svg:not(:root) {
+	overflow: hidden;
+}
+
+/* Abbreviations
+---------------------------------------- */
+
+abbr[title], dfn[title] {
+	border-bottom: 1px dotted;
+	cursor: help;
+}
+
+/* Marked/inserted/deleted text
+---------------------------------------- */
+
+mark {
+	background: #ff0;
+}
+
+ins {
+	text-decoration: none;
+	background: #ff9;
+}
+
+del {
+	text-decoration: line-through;
+}
+
+/* Others
+---------------------------------------- */
+
+hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-bottom: 1px solid #ddd;
+}
+
+strong, b, dt {
+	font-weight: bold;
+}
+
+dfn {
+	font-style: italic;
+}
+
+var, address {
+	font-style: normal;
+}
+
+/* Position 'sub' and 'sup' without affecting line-height: gist.github.com/413930 */
+sub, sup {
+	font-size: 0.625em;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+
+sup {
+	top: -0.5em;
+}
+
+sub {
+	bottom: -0.25em;
+}
+
+/* Helper classes
+---------------------------------------- */
+
+/*
+	* Micro clearfix hack, more semantically titled with 'group'
+	* Source: nicolasgallagher.com/micro-clearfix-hack/
+*/
+.group:before, .group:after {
+	content: "";
+	display: table;
+}
+
+.group:after {
+	clear: both;
+}
+
+.group {
+	*zoom: 1;
+}
+
+/* Primary styles
+---------------------------------------- */
+
+@import 'helpless.1.0.0.less';
+
+//Variables
+
+@background:#EBEBEB;
+@mainhighlight:#3B424C;
+@bright:#FF5335;
+@slight:#999999;
+
+body {
+	background-color: #F5F6F7;
+	font-family: "Open Sans";
+}
+
+img {
+	max-width:100%;
+}
+
+.wrap {
+	width:70%;
+	margin:0 auto;
+}
+
+//Header
+header[role="banner"] {
+	width:100%;
+	background:@mainhighlight;
+	#hl.clearfix();
+	padding-top:0.6em;
+	border-bottom:0.2em solid @bright;
+	
+	h1 {
+			font-size:2em;
+			font-family: "Open Sans";
+			font-weight:300;
+			float:left;
+			a {
+				color:#fff;
+				
+				span {
+					color:@bright;
+				}
+			}
+		}
+			
+	nav {
+		float:right;
+		position:relative;
+		top:0.5em;
+		ul {
+			list-style-type:none;
+			li {
+				display:inline;
+				color:lighten(@slight, 0.5);
+				font-size:0.7em;
+				
+				a {
+					color:@slight;
+				}
+				
+				&:before {
+					content:"|";
+					color:darken(@slight, 0.9);
+					padding-right:0.5em;
+				}
+				
+				&:first-child {
+					&:before {
+					content:"";
+				}
+				}
+			}
+		}
+	}
+}
+
+//Welcome
+
+div#welcome {
+	background:#EBEBEB;
+	padding-top:2em;
+	font-family: "Open Sans";
+	position:relative;
+	border-bottom:0.1em solid #ccc;
+	
+	h2,h3 {
+		color:@mainhighlight;
+	}
+	
+	h2 {
+		font-size:3.5em;
+	}
+	
+	h3 {
+		margin-top:0;
+		font-size:4.5em;
+	}
+	
+	img.earth {
+		position:absolute;
+		bottom:-1.7em;
+		right:5%;
+		height:12em;
+	}
+	
+	p.description {
+		position:relative;
+		top:-2em;
+		margin-bottom:0;
+	}
+
+	ol {
+		position:relative;
+		top:-1em;
+		li {
+			margin-right:2em;
+			display:inline;
+			&:nth-child(1) {
+				&:before {
+					content:"1";
+				}
+			}
+			
+			&:nth-child(2) {
+				&:before {
+					content:"2";
+				}
+			}
+			
+			&:nth-child(3) {
+				&:before {
+					content:"3";
+				}
+			}
+			&:before {
+				display: inline-block;
+				text-align:center;
+				line-height:2.8em;
+				content:"";
+				width: 2.8em;
+				height: 2.8em;
+				background: @bright;
+				color:#fff;
+				-moz-border-radius: 1.4em;
+				-webkit-border-radius: 1.4em;
+				margin-right:1em;
+			}
+		}
+	}
+}
+
+//Projects
+
+#projects {
+	width:100%;
+	#hl.clearfix();
+	
+	div.showing {
+		margin-top:1.5em;
+		text-align:center;
+		font-size:1.2em;
+		margin-bottom:1em;
+		position:relative;
+		
+		ul {
+			background:#fff;
+			border:0.1em solid #E6E6E6;
+			font-size:0.9em;
+			width:10em;
+			text-align:left;
+			padding:0.5em;
+			position:absolute;
+			z-index:10000;
+			display:none;
+			&.category {
+				left:20em;
+			}
+			
+			&.skill {
+				left:30em;
+			}
+			li {
+				list-style-type:none;
+				color:#06C;
+				&:hover {
+					text-decoration:underline;
+					cursor:pointer;
+				}
+			}
+		}
+	}
+	
+	article:nth-child(3n+1) {
+		float:left;
+	}
+	
+	article:nth-child(3n+3) {
+		margin-right:2%;
+	}
+	
+	article {
+		border:0.1em solid #E6E6E6;
+		#hl.round-all-corners(0.3em);
+		float:right;
+		width:30%;
+		padding:1%;
+		margin-bottom:1em;
+		background:#fff;
+		padding-bottom:1em;
+		h1,h2 {
+			font-family: "Open Sans";
+		}
+		
+		h1 {
+			font-size:1em;
+			border-bottom:0.2em solid #E6E6E6;
+			padding-bottom:0.2em;
+		}
+		
+		
+		img {
+			position:relative;
+			width:100%;
+			margin-bottom:0;
+		}
+		
+		p {
+			font-size:0.7em;
+		}
+		
+		dl {
+			font-size:0.8em;
+			dt {
+				display:inline;
+				margin-right:0.4em;
+				&:after {
+					content:":";
+				}
+			}
+			
+			dd {
+				display:inline;
+				margin-left:0.1em;
+				
+				&:after {
+					content:",";
+				}
+				
+				&:last-child{
+					&:after {
+						content:"";
+					}
+				}
+			}
+		}
+		
+		a.join {
+			background:@bright;
+			#hl.round-all-corners(0.5em);
+			padding:0.9em;
+			padding-top:0.4em;
+			padding-bottom:0.4em;
+			color:white;
+			display:block;
+			width:9em;
+			margin:0 auto;
+			text-align:center;
+			&:hover {
+				background:@mainhighlight;
+				text-decoration:none;
+			}
+		}
+	
+		ul {
+			display:none;
+			margin-bottom:0;
+			li {
+				display:inline;
+				font-size:0.7em;
+			}
+		}
+	}
+}
+
+div.fullpagecontent {
+	margin-top:2em;
+	h1 {
+		color:@mainhighlight;
+		font-size:2em;
+	}
+}
+
+
+
+/* Media queries
+---------------------------------------- */
+
+/* The media queries included in here are only placeholder. Modify them as your content requires */
+
+@media only screen and (max-width: 540px) {
+	div#welcome {
+		ol {
+
+			li {
+				display:block;
+				margin-top:1em;
+				&:before {
+					line-height:2em;
+					width: 2em;
+					height: 2em;
+					-moz-border-radius: 1em;
+					-webkit-border-radius: 1em;
+					margin-right:1em;
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 777px) {
+	/* Wide mobile (480px+) styles go here */
+	div.wrap {
+		width:90%;
+	}
+	div#welcome {
+
+		h2 {
+			font-size:3em;
+			text-align:center;
+		}
+
+		p.description {
+			text-align:center;
+			top:-2em;
+			margin-bottom:0;
+		}
+
+		ol {
+			width:33.9em;
+			margin:0 auto;
+			li {
+				&:before {
+					line-height:2em;
+					width: 2em;
+					height: 2em;
+					-moz-border-radius: 1em;
+					-webkit-border-radius: 1em;
+					margin-right:1em;
+				}
+			}
+		}
+	}
+	
+	#projects {
+		article:nth-child(3n+1) {
+			float:left;
+		}
+
+		article:nth-child(3n+3) {
+			margin-right:0;
+		}
+		
+		article:nth-child(even){
+			float:right;
+		}
+		article {
+			float:none !important;
+			width:100% !important;
+			text-align:center;
+			
+			h1 {
+				font-size:2em;
+			}
+		}
+	}
+
+}
+
+@media only screen and (max-width: 900px) {
+	#projects {
+		article {
+		}
+	}
+	 }
+
+
+@media only screen and (max-width: 1162px) { 
+	/* Tablets/netbooks (768px+) styles go here */
+	div.wrap {
+		width:90%;
+	}
+	div#welcome {
+
+		h2 {
+			font-size:3em;
+			text-align:center;
+		}
+
+		p.description {
+			text-align:center;
+			top:-2em;
+			margin-bottom:0;
+		}
+
+		ol {
+			width:33.9em;
+			margin:0 auto;
+			li {
+				&:before {
+					line-height:2em;
+					width: 2em;
+					height: 2em;
+					-moz-border-radius: 1em;
+					-webkit-border-radius: 1em;
+					margin-right:1em;
+				}
+			}
+		}
+	}
+	
+	#projects {
+		article:nth-child(3n+1) {
+			float:left;
+		}
+
+		article:nth-child(3n+3) {
+			margin-right:0;
+		}
+		
+		article:nth-child(even){
+			float:right;
+		}
+		article {
+			float:left;
+			width:45%;
+		}
+	}
+	
+}
+
+@media only screen and (max-width: 1200px) { 
+	img.earth {
+		display:none;
+	}
+}
+
+/* Print styles
+---------------------------------------- */
+
+/* Print styles inlined to avoid extra HTTP connection */
+
+@media print {
+	* {
+		background: transparent !important;
+		color: black !important; /* Black prints faster: sanbeiji.com/archives/953 */
+		text-shadow: none !important;
+		filter: none !important;
+		-ms-filter: none !important;
+	}
+
+	a, a:visited {
+		text-decoration: underline;
+	}
+
+	a[href]:after {
+		content: " (" attr(href) ")";
+	}
+
+	abbr[title]:after {
+		content: " (" attr(title) ")";
+	}
+
+	/* Do not show javascript and internal links */
+	a[href^="javascript:"]:after, a[href^="#"]:after {
+		content: ""; 
+	}
+
+	/* Printing Tables: css-discuss.incutio.com/wiki/Printing_Tables */
+	thead {
+		display: table-header-group;
+	}
+
+	tr, img {
+		page-break-inside: avoid;
+	}
+
+	@page {
+		margin: 0.5cm;
+	}
+
+	p, h2, h3 {
+		orphans: 3;
+		widows: 3;
+	}
+
+	h2, h3 {
+		page-break-after: avoid;
+	}
+}

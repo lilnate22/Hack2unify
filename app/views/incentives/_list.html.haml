@@ -1,7 +1,0 @@
-%div.activity_incentives
-  Incentives for this activity:
-  %ul
-    - incentives.each do |incentive|
-      %li
-        = link_to incentive.name, incentive
-        = raw "(#{provider_link incentive.provider})"
