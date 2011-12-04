@@ -23,14 +23,12 @@
     -@projects.each do |project|
       %article
         %header
-          %hgroup
-            %h1 
-              = project.name.strip
-            %h2 
-              = project.description
-        %img{:src => "http://lorempixel.com/400/250/"}
-        %dl
-          %dt Needs
-          %dd Developers
-          %dd Engineers
-        %a.join{:href => "#"} Join this Project
+          %h1
+            = project.name
+          %img{:src => "http://lorempixel.com/200/100/"}
+        %p
+          = project.description
+          %dl
+            %dd Developers
+            %dd Engineers
+          %a.join{:href => "#"} Join this Project
