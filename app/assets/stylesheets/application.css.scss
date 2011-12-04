@@ -90,8 +90,8 @@ div#welcome ol li:before{display:inline-block;text-align:center;line-height:2.8e
 #projects article:nth-child(3n+3){margin-right:2%;}
 #projects article{border:0.1em solid #E6E6E6;-webkit-border-radius:0.3em;-moz-border-radius:0.3em;border-radius:0.3em;float:right;width:30%;padding:1%;margin-bottom:1em;background:#fff;padding-bottom:1em;}#projects article h1,#projects article h2{font-family:"Open Sans";}
 #projects article h1{font-size:1em;border-bottom:0.2em solid #E6E6E6;padding-bottom:0.2em;}
-#projects article h2{font-size:0.6em;font-weight:normal;position:relative;top:18em;}
-#projects article img{position:relative;top:-2.5em;width:100%;position:relative;margin-bottom:0;}
+#projects article img{position:relative;width:100%;margin-bottom:0;}
+#projects article p{font-size:0.7em;}
 #projects article dl{font-size:0.8em;}#projects article dl dt{display:inline;margin-right:0.4em;}#projects article dl dt:after{content:":";}
 #projects article dl dd{display:inline;margin-left:0.1em;}#projects article dl dd:after{content:",";}
 #projects article dl dd:last-child:after{content:"";}
