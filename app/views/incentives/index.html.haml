@@ -6,14 +6,14 @@
   %tbody
     - @incentives.each do |incentive|
       %tr
-        %td.activity{ :data => {:tooltip => incentive.activity.cause.description} }
+        %td.activity{ :data => {:tooltip => incentive.activity.project.description} }
           = render :partial => "shared/vote", :locals => {:target => incentive.activity}
-          -if incentive.activity.cause.description
-            = link_to incentive.activity.cause.name, incentives_path(:cause_id => incentive.activity.cause.id)
+          -if incentive.activity.project.description
+            = link_to incentive.activity.project.name, incentives_path(:project_id => incentive.activity.project.id)
             needs
             =  incentive.activity.name
           -else
-            = incentive.activity.cause.name
+            = incentive.activity.project.name
             needs
             =  incentive.activity.name
           .clear
@@ -41,14 +41,14 @@
       - @activities.each do |activity|
         -if activity.incentives.size < 1
           %tr
-            %td.activity{ :data => {:tooltip => activity.cause.description} }
+            %td.activity{ :data => {:tooltip => activity.project.description} }
               = render :partial => "shared/vote", :locals => {:target => activity}
-              -if activity.cause.description
-                = link_to activity.cause.name
+              -if activity.project.description
+                = link_to activity.project.name
                 needs
                 =  activity.name
               -else
-                = activity.cause.name
+                = activity.project.name
                 needs
                 =  activity.name
               .clear

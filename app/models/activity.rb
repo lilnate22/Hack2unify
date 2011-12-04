@@ -3,7 +3,7 @@ class Activity < ActiveRecord::Base
   #make_flaggable
   has_many :incentives
 
-  belongs_to :cause
+  belongs_to :project
   belongs_to :submitter, :class_name => 'Actor'
   validates :name, :presence => true
 

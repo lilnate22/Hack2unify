@@ -1,9 +1,9 @@
 %h1
-  = @cause.name
+  = @project.name
 %h2
-  = @cause.description
+  = @project.description
 
--@cause.activities.each do |activity|
+-@project.activities.each do |activity|
   %h3
     =activity.name
     %br
