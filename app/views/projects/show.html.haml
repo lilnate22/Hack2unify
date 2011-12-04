@@ -1,6 +1,7 @@
 %h1
 	= @project.name
-%h2 = @project.description
+%h2 
+	= @project.description
 	  %img{:src => "http://lorempixel.com/400/250/"}
 	    %dl
 	      %dt Needs
@@ -10,6 +11,6 @@
 
 -@project.activities.each do |activity|
 %h3
- =activity.name
- %br
- =activity.description
+ 	=activity.name
+ 	%br
+	 	=activity.description

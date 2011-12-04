@@ -24,18 +24,13 @@
       %article
         %header
           %hgroup
-        %h1
-          = project.name
-        %h2
-          = project.description
-        %img{:src => "http://lorempixel.com/200/100/"}
-          %b Needs: Developers
-        %ul.tags
-          %li
-            %a{:href => "#"} tag1
-          %li
-            %a{:href => "#"} tag1
-          %li
-            %a{:href => "#"} tag1
-          %li
-            %a{:href => "#"} tag1
+            %h1 
+              = project.name.strip
+            %h2 
+              = project.description
+        %img{:src => "http://lorempixel.com/400/250/"}
+        %dl
+          %dt Needs
+          %dd Developers
+          %dd Engineers
+        %a.join{:href => "#"} Join this Project
