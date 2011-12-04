@@ -5,6 +5,7 @@ class Actor < ActiveRecord::Base
   has_karma(:incentives, :as => :submitter)
   has_many :incentives, :foreign_key => :claimant_id
   has_many :provided_incentives, :class_name => "Incentive", :foreign_key => :supporter_id
+  has_many :project_memberships
   has_many :projects, :through => :project_memberships
 
   def self.create_with_omniauth(auth, ip_address)
@@ -31,6 +32,15 @@ class Actor < ActiveRecord::Base
       guest =Actor.create! :name => guest_name, :ip_address => ip_address
     end
     return guest
+  end
+
+  def join_project(project)
+    ProjectMembership.create(:project_id => project.id, :actor_id => id)
+  end
+
+  def leave_project(project)
+    membership = ProjectMembership.where(:project_id => project.id, :actor_id => id)
+    ProjectMembership.destroy(membership)
   end
 
   def vote_up(target)

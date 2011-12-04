@@ -1,0 +1,7 @@
+= semantic_form_for @project do |f|
+  = f.inputs do
+    =f.input :name, :as => :string
+    Who or what will benefit from activities created under this project?  (Each activity belongs to just one project for now, to help keep things focused.  We phrase the activities as "<NAME> needs <ACTIVITY>"" on the index page.)
+    =f.input :description
+    The decription field is optional, but will populate a popup dialogue with more details when users mouseover an action for your project on the index, if you enter one.  Some projects are self explanatory, and some could use some description or details for context.
+  = f.buttons

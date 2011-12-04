@@ -9,6 +9,16 @@ class ProjectsController < ApplicationController
     redirect_to :back
   end
 
+  def join
+    current_actor.join_project Project.find(params[:id])
+    redirect_to :back
+  end
+
+  def leave
+    current_actor.leave_project Project.find(params[:id])
+    redirect_to :back
+  end
+
   # def flag
   #   begin
   #     current_actor.flag(@project = Project.find(params[:id]))

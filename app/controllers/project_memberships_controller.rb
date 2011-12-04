@@ -26,10 +26,11 @@ class ProjectMembershipsController < ApplicationController
   def new
     @project_membership = ProjectMembership.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @project_membership }
-    end
+    @project_membership.project_id = params[:project_id]
+    @project_membership.actor_id = current_actor.id
+    @project_membership.save
+
+    redirect_to :back
   end
 
   # GET /project_memberships/1/edit
@@ -40,17 +41,13 @@ class ProjectMembershipsController < ApplicationController
   # POST /project_memberships
   # POST /project_memberships.json
   def create
-    @project_membership = ProjectMembership.new(params[:project_membership])
+    @project_membership = ProjectMembership.new
 
-    respond_to do |format|
-      if @project_membership.save
-        format.html { redirect_to @project_membership, notice: 'Project membership was successfully created.' }
-        format.json { render json: @project_membership, status: :created, location: @project_membership }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @project_membership.errors, status: :unprocessable_entity }
-      end
-    end
+    @project_membership.project_id = params[:project_id]
+    @project_membership.actor_id = current_actor.id
+    @project_membership.save
+
+    redirect_to projects_path
   end
 
   # PUT /project_memberships/1

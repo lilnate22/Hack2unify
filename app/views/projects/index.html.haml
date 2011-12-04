@@ -1,0 +1,41 @@
+#welcome
+  .wrap
+    %hgroup
+    %h2 How can you change the world?
+    %img.earth{:alt => "earth", :src => "assets/img/earth.png"}/
+    %p.description Find projects across the globe that need skilled help. Pay it forward. It's as easy as three steps:
+    %ol
+      %li
+        %a{:href => "#"} Register
+      %li
+        %a{:href => "#"} Find a Project
+      %li
+        %a{:href => "#"} Create a solution
+/ #welcome
+.wrap
+  #projects
+    .showing
+      Showing
+      %a{:href => "#"} all projects
+      needing
+      %a{:href => "#"} developers
+    / .showing
+    -@projects.each do |project|
+      %article
+        %header
+          %hgroup
+        %h1
+          = project.name
+        %h2
+          = project.description
+        %img{:src => "http://lorempixel.com/200/100/"}
+          %b Needs: Developers
+        %ul.tags
+          %li
+            %a{:href => "#"} tag1
+          %li
+            %a{:href => "#"} tag1
+          %li
+            %a{:href => "#"} tag1
+          %li
+            %a{:href => "#"} tag1
